@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Alegienne | Coming soon</title>
+  <meta name="description" content="Alegienne, a brand dedicated to creating heartfelt artefacts and tea with love. Sign up to receive word when we launch.">
+  <meta name="robots" content="index, follow, max-image-preview:large, noai, noimageai">
+  <meta name="theme-color" content="#2d0c09">
+  <meta property="og:title" content="Alegienne | Coming soon">
+  <meta property="og:description" content="Alegienne, a brand dedicated to creating heartfelt artefacts and tea with love. Sign up to receive word when we launch.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://alegienne.com">
+  <meta property="og:site_name" content="Alegienne">
+  <link rel="canonical" href="https://alegienne.com">
+  <link rel="icon" type="image/png" href="/Alegienne-favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,400;0,500;1,400&display=swap">
+  <style>
+    :root {
+      --maroon: #2d0c09;
+      --blush: #ebd6ce;
+      --paper: #ede6e2;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { min-height: 100%; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      background-color: var(--maroon);
+      background-image:
+        radial-gradient(ellipse at 50% 45%, rgba(45, 12, 9, 0.18), rgba(45, 12, 9, 0.62) 78%),
+        url("./assets/plume-texture-bg.jpg");
+      background-size: cover, cover;
+      background-position: center, center;
+      background-repeat: no-repeat;
+      color: var(--blush);
+      font-family: Bitter, Georgia, serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    main {
+      width: min(100%, 920px);
+      padding: clamp(48px, 10vh, 96px) clamp(20px, 6vw, 64px) clamp(56px, 12vh, 120px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: clamp(18px, 3vw, 30px);
+    }
+
+    .wordmark {
+      width: min(78vw, 620px);
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 14px 44px rgba(0, 0, 0, 0.35));
+    }
+
+    .signup-copy {
+      margin: 0;
+      font-size: clamp(1rem, 2.6vw, 1.2rem);
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      line-height: 1.7;
+    }
+
+    .email-form {
+      width: min(88vw, 460px);
+      margin: 0;
+    }
+
+    .input-group {
+      display: flex;
+      align-items: stretch;
+      background: var(--paper);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 18px 52px rgba(0, 0, 0, 0.35);
+    }
+
+    .email-input {
+      flex: 1 1 auto;
+      min-width: 0;
+      border: 0;
+      background: transparent;
+      color: var(--maroon);
+      font: inherit;
+      font-size: 0.98rem;
+      padding: clamp(14px, 2.2vw, 17px) clamp(16px, 2.4vw, 20px);
+      outline: none;
+    }
+
+    .email-input::placeholder { color: rgba(45, 12, 9, 0.55); }
+
+    .submit-btn {
+      flex: 0 0 auto;
+      border: 0;
+      background: transparent;
+      color: var(--maroon);
+      font: inherit;
+      font-size: 0.98rem;
+      font-style: italic;
+      padding: clamp(14px, 2.2vw, 17px) clamp(18px, 2.6vw, 24px);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: opacity 0.2s ease;
+    }
+
+    .submit-btn:hover { opacity: 0.72; }
+    .submit-btn:disabled { opacity: 0.45; cursor: wait; }
+
+    .form-status {
+      margin: 14px 0 0;
+      min-height: 1.4em;
+      font-size: 0.92rem;
+      font-style: italic;
+      letter-spacing: 0.02em;
+      opacity: 0.92;
+    }
+
+    footer {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 18px 20px;
+      text-align: center;
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      color: rgba(235, 214, 206, 0.72);
+      background: rgba(45, 12, 9, 0.55);
+      -webkit-backdrop-filter: blur(6px);
+      backdrop-filter: blur(6px);
+    }
+
+    @media (max-height: 620px), (max-width: 420px) {
+      footer { position: static; margin-top: 8px; background: transparent; -webkit-backdrop-filter: none; backdrop-filter: none; }
+      main { padding-bottom: 32px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <img class="wordmark" src="./assets/coming-soon-gold.png" alt="Alegienne — coming soon" width="2000" height="1205">
+    <p class="signup-copy">sign up to receive word when we launch x</p>
+    <form class="email-form" data-subscribe-form>
+      <div class="input-group">
+        <label for="email" style="position:absolute;left:-9999px;">Email</label>
+        <input class="email-input" id="email" name="email" type="email" placeholder="Email address" autocomplete="email" autocapitalize="off" autocorrect="off" required>
+        <button class="submit-btn" type="submit" data-subscribe-submit>yes please.</button>
+      </div>
+      <p class="form-status" data-subscribe-status role="status" aria-live="polite"></p>
+    </form>
+  </main>
+  <footer>&copy; always, Alegienne.</footer>
+  <script>
+    (() => {
+      const form = document.querySelector("[data-subscribe-form]");
+      if (!form) return;
+      const status = form.querySelector("[data-subscribe-status]");
+      const endpoint = "https://rjl-publisher-insights-agent-a07f3048.base44.app/functions/subscribeAlegienne?format=json";
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const email = form.querySelector('[name="email"]').value.trim();
+        const submitBtn = form.querySelector("[data-subscribe-submit]");
+
+        if (!email) {
+          status.textContent = "please add your email.";
+          return;
+        }
+
+        status.textContent = "sending…";
+        if (submitBtn) submitBtn.disabled = true;
+
+        try {
+          const res = await fetch(endpoint, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, launch: true }),
+          });
+          if (!res.ok) throw new Error("failed");
+          const data = await res.json().catch(() => ({}));
+          status.textContent = data.duplicated
+            ? "you're already on the list — see you at the launch, x"
+            : "you're in — welcome to the list, x";
+          form.reset();
+        } catch (error) {
+          status.textContent = "something went sideways — try again, or write to orders@alegienne.com.au";
+        } finally {
+          if (submitBtn) submitBtn.disabled = false;
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
