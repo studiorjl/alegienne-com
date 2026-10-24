@@ -14,68 +14,77 @@
   <meta property="og:site_name" content="Alegienne">
   <link rel="canonical" href="https://alegienne.com">
   <link rel="icon" type="image/png" href="/Alegienne-favicon.png">
+  <link rel="preload" as="image" href="./assets/coming-soon-gold.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,400;0,500;1,400&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400&display=swap">
   <style>
     :root {
       --maroon: #2d0c09;
       --blush: #ebd6ce;
       --paper: #ede6e2;
+      --maroon-cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='22' height='22'><circle cx='11' cy='11' r='7' fill='%232d0c09' stroke='%23ebd6ce' stroke-width='1.5'/></svg>") 11 11, auto;
     }
 
-    * { box-sizing: border-box; }
+    * { box-sizing: border-box; cursor: var(--maroon-cursor); }
 
-    html { min-height: 100%; }
+    html { min-height: 100%; scroll-behavior: smooth; }
 
     body {
       margin: 0;
       min-height: 100vh;
       min-height: 100svh;
-      display: grid;
-      place-items: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       background-color: var(--maroon);
       background-image:
-        radial-gradient(ellipse at 50% 45%, rgba(45, 12, 9, 0.18), rgba(45, 12, 9, 0.62) 78%),
+        radial-gradient(ellipse at 50% 30%, rgba(45, 12, 9, 0.18), rgba(45, 12, 9, 0.62) 78%),
         url("./assets/plume-texture-bg.jpg");
       background-size: cover, cover;
       background-position: center, center;
       background-repeat: no-repeat;
+      background-attachment: fixed;
       color: var(--blush);
-      font-family: Bitter, Georgia, serif;
+      font-family: "PT Sans", Georgia, serif;
       -webkit-font-smoothing: antialiased;
     }
 
     main {
-      width: min(100%, 920px);
-      padding: clamp(48px, 10vh, 96px) clamp(20px, 6vw, 64px) clamp(56px, 12vh, 120px);
+      width: min(100%, 1000px);
+      flex: 1;
+      padding: clamp(40px, 8vh, 88px) clamp(20px, 6vw, 64px) clamp(24px, 4vh, 48px);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-      gap: clamp(18px, 3vw, 30px);
     }
 
     .wordmark {
-      width: min(78vw, 620px);
+      width: 136.39px;
       height: auto;
       display: block;
-      filter: drop-shadow(0 14px 44px rgba(0, 0, 0, 0.35));
+      margin-bottom: clamp(28px, 5vh, 52px);
+      filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.35));
+    }
+
+    .coming-soon {
+      width: 50%;
+      max-width: 520px;
+      height: auto;
+      display: block;
     }
 
     .signup-copy {
-      margin: 0;
-      font-size: clamp(1rem, 2.6vw, 1.2rem);
+      margin: clamp(18px, 3vh, 28px) 0 clamp(18px, 3vh, 28px);
+      font-size: clamp(1rem, 2.6vw, 1.15rem);
       font-weight: 400;
       letter-spacing: 0.02em;
       line-height: 1.7;
     }
 
-    .email-form {
-      width: min(88vw, 460px);
-      margin: 0;
-    }
+    .email-form { width: 49%; margin: 0 auto; }
 
     .input-group {
       display: flex;
@@ -103,19 +112,19 @@
     .submit-btn {
       flex: 0 0 auto;
       border: 0;
-      background: transparent;
+      background: var(--blush);
       color: var(--maroon);
       font: inherit;
       font-size: 0.98rem;
       font-style: italic;
       padding: clamp(14px, 2.2vw, 17px) clamp(18px, 2.6vw, 24px);
-      cursor: pointer;
+      cursor: var(--maroon-cursor);
       white-space: nowrap;
       transition: opacity 0.2s ease;
     }
 
-    .submit-btn:hover { opacity: 0.72; }
-    .submit-btn:disabled { opacity: 0.45; cursor: wait; }
+    .submit-btn:hover { opacity: 0.82; }
+    .submit-btn:disabled { opacity: 0.45; }
 
     .form-status {
       margin: 14px 0 0;
@@ -126,12 +135,25 @@
       opacity: 0.92;
     }
 
+    .roses {
+      width: 35%;
+      max-width: 480px;
+      height: auto;
+      display: block;
+      margin-top: clamp(28px, 5vh, 56px);
+    }
+
+    .signature {
+      width: 35%;
+      max-width: 420px;
+      height: auto;
+      display: block;
+      margin-top: clamp(28px, 5vh, 56px);
+    }
+
     footer {
-      position: fixed;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      padding: 18px 20px;
+      width: 100%;
+      padding: 18px 20px clamp(18px, 4vh, 40px);
       text-align: center;
       font-size: 0.8rem;
       letter-spacing: 0.06em;
@@ -141,17 +163,40 @@
       backdrop-filter: blur(6px);
     }
 
-    @media (max-height: 620px), (max-width: 420px) {
-      footer { position: static; margin-top: 8px; background: transparent; -webkit-backdrop-filter: none; backdrop-filter: none; }
-      main { padding-bottom: 32px; }
+    /* each element arrives */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: none; }
+    }
+    .fade-in { animation: fadeUp 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) both; }
+    main > :nth-child(1) { animation-delay: 0.05s; }
+    main > :nth-child(2) { animation-delay: 0.25s; }
+    main > :nth-child(3) { animation-delay: 0.45s; }
+    main > :nth-child(4) { animation-delay: 0.65s; }
+    main > :nth-child(5) { animation-delay: 0.85s; }
+    main > :nth-child(6) { animation-delay: 1.05s; }
+    footer { animation: fadeUp 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) 1.2s both; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .fade-in, footer { animation: none; }
+    }
+
+    /* mobile, per the shopify settings */
+    @media (max-width: 749px) {
+      .wordmark { width: 30%; max-width: 220px; margin-bottom: clamp(24px, 5vh, 44px); }
+      .coming-soon { width: 82%; }
+      .email-form { width: 86%; }
+      .roses { width: 84%; }
+      .signature { width: 37%; }
     }
   </style>
 </head>
 <body>
   <main>
-    <img class="wordmark" src="./assets/coming-soon-gold.png" alt="Alegienne — coming soon" width="2000" height="1205">
-    <p class="signup-copy">sign up to receive word when we launch x</p>
-    <form class="email-form" data-subscribe-form>
+    <img class="wordmark fade-in" src="./assets/alegienne-wordmark-gold.webp" alt="Alegienne" width="420" height="148" decoding="async">
+    <img class="coming-soon fade-in" src="./assets/coming-soon-gold.webp" alt="coming soon" width="1000" height="602" decoding="async" fetchpriority="high">
+    <p class="signup-copy fade-in">sign up to receive word when we launch x</p>
+    <form class="email-form fade-in" data-subscribe-form>
       <div class="input-group">
         <label for="email" style="position:absolute;left:-9999px;">Email</label>
         <input class="email-input" id="email" name="email" type="email" placeholder="Email address" autocomplete="email" autocapitalize="off" autocorrect="off" required>
@@ -159,6 +204,8 @@
       </div>
       <p class="form-status" data-subscribe-status role="status" aria-live="polite"></p>
     </form>
+    <img class="roses fade-in" src="./assets/alegienne-roses-web.webp" alt="garden roses in a jar, with love" width="680" height="1024" decoding="async">
+    <img class="signature fade-in" src="./assets/alegienne-signature-gold.webp" alt="with love, Alegienne" width="760" height="458" decoding="async">
   </main>
   <footer>&copy; always, Alegienne.</footer>
   <script>
@@ -200,6 +247,12 @@
         }
       });
     })();
+
+    // no right click, and no dragging the images
+    document.addEventListener("contextmenu", (event) => event.preventDefault());
+    document.addEventListener("dragstart", (event) => {
+      if (event.target.tagName === "IMG") event.preventDefault();
+    });
   </script>
 </body>
 </html>
