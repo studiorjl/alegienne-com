@@ -17,12 +17,13 @@
   <link rel="preload" as="image" href="./assets/coming-soon-gold.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Mono:ital,wght@0,400;0,700;1,400&display=swap">
   <style>
     :root {
       --maroon: #2d0c09;
-      --blush: #ebd6ce;
-      --paper: #ede6e2;
+      --blush: #d2b2a6;
+      --paper: #e7dcd0;
+      --sage: #8e7b58
       --maroon-cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='22' height='22'><circle cx='11' cy='11' r='7' fill='%232d0c09' stroke='%23ebd6ce' stroke-width='1.5'/></svg>") 11 11, auto;
     }
 
@@ -46,7 +47,7 @@
       background-repeat: no-repeat;
       background-attachment: fixed;
       color: var(--blush);
-      font-family: "PT Sans", Georgia, serif;
+      font-family: "PT Mono", Georgia, serif;
       -webkit-font-smoothing: antialiased;
     }
 
@@ -241,7 +242,7 @@
             : "you're in — welcome to the list, x";
           form.reset();
         } catch (error) {
-          status.textContent = "something went sideways — try again, or write to orders@alegienne.com.au";
+          status.textContent = "something went sideways — try again, or write to info@alegienne.com.au";
         } finally {
           if (submitBtn) submitBtn.disabled = false;
         }
