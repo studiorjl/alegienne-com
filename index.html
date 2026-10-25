@@ -24,10 +24,10 @@
       --blush: #d2b2a6;
       --paper: #e7dcd0;
       --sage: #8e7b58;
-      --maroon-cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='22' height='22'><circle cx='11' cy='11' r='7' fill='%232d0c09' stroke='%23ebd6ce' stroke-width='1.5'/></svg>") 11 11, auto;
+      --blush-cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='22' height='22'><circle cx='11' cy='11' r='7' fill='%23d2b2a6' stroke='%232d0c09' stroke-width='1.5'/></svg>") 11 11, auto;
     }
 
-    * { box-sizing: border-box; cursor: var(--maroon-cursor); }
+    * { box-sizing: border-box; cursor: var(--blush-cursor); }
 
     html { min-height: 100%; scroll-behavior: smooth; }
 
@@ -103,8 +103,8 @@
       background: transparent;
       color: var(--maroon);
       font: inherit;
-      font-size: 0.98rem;
-      padding: clamp(14px, 2.2vw, 17px) clamp(16px, 2.4vw, 20px);
+      font-size: 0.784rem;
+      padding: clamp(11.2px, 1.76vw, 13.6px) clamp(12.8px, 1.92vw, 16px);
       outline: none;
     }
 
@@ -116,15 +116,15 @@
       background: var(--blush);
       color: var(--maroon);
       font: inherit;
-      font-size: 0.98rem;
+      font-size: 0.784rem;
       font-style: italic;
-      padding: clamp(14px, 2.2vw, 17px) clamp(18px, 2.6vw, 24px);
-      cursor: var(--maroon-cursor);
+      padding: clamp(11.2px, 1.76vw, 13.6px) clamp(14.4px, 2.08vw, 19.2px);
+      cursor: var(--blush-cursor);
       white-space: nowrap;
       transition: opacity 0.2s ease;
     }
 
-    .submit-btn:hover { opacity: 0.82; }
+    .submit-btn:hover { background: var(--sage); }
     .submit-btn:disabled { opacity: 0.45; }
 
     .form-status {
@@ -145,16 +145,16 @@
     }
 
     .signature {
-      width: 63%;
-      max-width: 756px;
+      width: 34%;
+      max-width: 320px;
       height: auto;
       display: block;
-      margin-top: clamp(28px, 5vh, 56px);
+      margin-top: clamp(16px, 3vh, 30px);
     }
 
     footer {
       width: 100%;
-      padding: 18px 20px clamp(18px, 4vh, 40px);
+      padding: 12px 20px 16px;
       text-align: center;
       font-size: 0.48rem;
       letter-spacing: 0.06em;
@@ -172,14 +172,24 @@
     .fade-in { animation: fadeUp 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) both; }
     main > :nth-child(1) { animation-delay: 0.05s; }
     main > :nth-child(2) { animation-delay: 0.25s; }
-    main > :nth-child(3) { animation-delay: 0.45s; }
-    main > :nth-child(4) { animation-delay: 0.65s; }
-    main > :nth-child(5) { animation-delay: 0.85s; }
-    main > :nth-child(6) { animation-delay: 1.05s; }
-    footer { animation: fadeUp 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) 1.2s both; }
+    .signup-copy.typing::after {
+      content: "|";
+      margin-left: 1px;
+      animation: blink 1s steps(1, end) infinite;
+    }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+    /* the line types itself, then the rest of the page arrives */
+    html.js .email-form, html.js .roses, html.js .signature, html.js footer { opacity: 0; }
+    html.js.typed .email-form { animation: fadeUp 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) both; }
+    html.js.typed .roses { animation: fadeUp 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) 0.2s both; }
+    html.js.typed .signature { animation: fadeUp 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) 0.4s both; }
+    html.js.typed footer { animation: fadeUp 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) 0.55s both; }
 
     @media (prefers-reduced-motion: reduce) {
       .fade-in, footer { animation: none; }
+      html.js .email-form, html.js .roses, html.js .signature, html.js footer { opacity: 1; }
+      .signup-copy.typing::after { content: none; }
     }
 
     /* mobile, per the shopify settings */
@@ -188,16 +198,17 @@
       .coming-soon { width: 82%; }
       .email-form { width: 86%; }
       .roses { width: 84%; }
-      .signature { width: 66.6%; }
+      .signature { width: 55%; }
     }
   </style>
+  <script>document.documentElement.classList.add("js");</script>
 </head>
 <body>
   <main>
     <img class="wordmark fade-in" src="./assets/alegienne-wordmark-gold.webp" alt="Alegienne" width="420" height="148" decoding="async">
     <img class="coming-soon fade-in" src="./assets/coming-soon-gold.webp" alt="coming soon" width="1000" height="602" decoding="async" fetchpriority="high">
-    <p class="signup-copy fade-in">sign up to receive word when we launch x</p>
-    <form class="email-form fade-in" data-subscribe-form>
+    <p class="signup-copy">sign up to receive word when we launch x</p>
+    <form class="email-form" data-subscribe-form>
       <div class="input-group">
         <label for="email" style="position:absolute;left:-9999px;">Email</label>
         <input class="email-input" id="email" name="email" type="email" placeholder="Email address" autocomplete="email" autocapitalize="off" autocorrect="off" required>
@@ -205,12 +216,34 @@
       </div>
       <p class="form-status" data-subscribe-status role="status" aria-live="polite"></p>
     </form>
-    <img class="roses fade-in" src="./assets/alegienne-roses-web.webp" alt="garden roses in a jar, with love" width="680" height="1024" decoding="async">
-    <img class="signature fade-in" src="./assets/alegienne-signature-gold.webp" alt="with love, Alegienne" width="760" height="458" decoding="async">
+    <img class="roses" src="./assets/alegienne-roses-web.webp" alt="garden roses in a jar, with love" width="680" height="1024" decoding="async">
+    <img class="signature" src="./assets/alegienne-signature-gold.webp" alt="with love, Alegienne" width="260" height="121" decoding="async">
   </main>
   <footer>&copy; always, Alegienne.</footer>
   <script>
     (() => {
+      // the sign-up line arrives letter by letter, then the page follows
+      const copyEl = document.querySelector(".signup-copy");
+      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (copyEl && !reduced) {
+        const text = copyEl.textContent;
+        copyEl.textContent = "";
+        copyEl.classList.add("typing");
+        let i = 0;
+        window.setTimeout(function step() {
+          i += 1;
+          copyEl.textContent = text.slice(0, i);
+          if (i < text.length) {
+            window.setTimeout(step, 42);
+          } else {
+            copyEl.classList.remove("typing");
+            document.documentElement.classList.add("typed");
+          }
+        }, 500);
+      } else if (copyEl) {
+        document.documentElement.classList.add("typed");
+      }
+
       const form = document.querySelector("[data-subscribe-form]");
       if (!form) return;
       const status = form.querySelector("[data-subscribe-status]");
